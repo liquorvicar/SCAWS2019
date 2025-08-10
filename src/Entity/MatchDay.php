@@ -9,53 +9,49 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\FixtureList")
- * @ORM\Table(name="`match`")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\FixtureList::class)]
+#[ORM\Table(name: '`match`')]
 class MatchDay
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $opponent = '';
     /**
      * @var \DateTimeImmutable
-     * @ORM\Column(type="date_immutable")
      */
+    #[ORM\Column(type: 'date_immutable')]
     private $date;
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $location = '';
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $competition = '';
     /**
      * @var Season
-     * @ORM\ManyToOne(targetEntity="Season")
-     * @ORM\JoinColumn(name="season_id", referencedColumnName="id")
      */
+    #[ORM\ManyToOne(targetEntity: \Season::class)]
+    #[ORM\JoinColumn(name: 'season_id', referencedColumnName: 'id')]
     private $season;
     /**
      * @var bool
-     * @ORM\Column(type="boolean")
      */
+    #[ORM\Column(type: 'boolean')]
     private $reset = false;
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Goal", mappedBy="match")
      */
+    #[ORM\OneToMany(targetEntity: \Goal::class, mappedBy: 'match')]
     private $goals;
 
     public function __construct()

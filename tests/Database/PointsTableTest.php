@@ -23,8 +23,8 @@ class PointsTableTest extends BaseTestCase
     {
         parent::setUp();
 
-        $this->pointsTable = self::$container->get(PointsTable::class);
-        $this->users = self::$container->get(UserProvider::class)->getUsers();
+        $this->pointsTable = self::getContainer()->get(PointsTable::class);
+        $this->users = self::getContainer()->get(UserProvider::class)->getUsers();
     }
 
     public function testWithNoScoresReturnsEmptyTable()

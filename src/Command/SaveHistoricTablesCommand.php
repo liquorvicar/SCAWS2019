@@ -8,14 +8,14 @@ use App\Repository\FixtureList;
 use App\Repository\PointsTable;
 use App\Security\UserProvider;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'scaws:save-tables')]
 class SaveHistoricTablesCommand extends Command
 {
-    protected static $defaultName = 'scaws:save-tables';
-
     /**
      * @var PointsTable
      */

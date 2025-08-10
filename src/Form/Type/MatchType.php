@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class MatchType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('opponent', TextType::class, ['label' => 'Opposition : '])

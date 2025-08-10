@@ -20,7 +20,7 @@ class PintType extends AbstractType
         $this->userList = $userList;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('user', ChoiceType::class, [

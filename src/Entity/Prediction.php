@@ -9,66 +9,64 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\PredictionRepository")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\PredictionRepository::class)]
 class Prediction
 {
     /**
      * @var int
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $user;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $position;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $time;
 
     /**
      * @var bool
-     * @ORM\Column(type="boolean")
      */
+    #[ORM\Column(type: 'boolean')]
     private $atMatch;
 
     /**
      * @var MatchDay
-     * @ORM\ManyToOne(targetEntity="MatchDay")
-     * @ORM\JoinColumn(name="match_id", referencedColumnName="id")
      */
+    #[ORM\ManyToOne(targetEntity: \MatchDay::class)]
+    #[ORM\JoinColumn(name: 'match_id', referencedColumnName: 'id')]
     private $match;
 
     /**
      * @var float
-     * @ORM\Column(type="float")
      */
+    #[ORM\Column(type: 'float')]
     private $points = 0.0;
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $niceTime;
 
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Score", mappedBy="prediction")
      */
+    #[ORM\OneToMany(targetEntity: \Score::class, mappedBy: 'prediction')]
     private $scores;
 
     public function __construct()

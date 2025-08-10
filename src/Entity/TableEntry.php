@@ -4,53 +4,49 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\PointsTable")
- * @ORM\Table(name="table_entry")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\PointsTable::class)]
+#[ORM\Table(name: 'table_entry')]
 class TableEntry
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
     /**
      * @var MatchDay
-     * @ORM\ManyToOne(targetEntity="MatchDay")
-     * @ORM\JoinColumn(name="match_id", referencedColumnName="id")
      */
+    #[ORM\ManyToOne(targetEntity: \MatchDay::class)]
+    #[ORM\JoinColumn(name: 'match_id', referencedColumnName: 'id')]
     private $match;
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $user;
     /**
      * @var int
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Column(type: 'integer')]
     private $played = 0;
     /**
      * @var int
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Column(type: 'integer')]
     private $pints = 0;
     /**
      * @var int
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Column(type: 'integer')]
     private $bonusPoints = 0;
     /**
      * @var float
-     * @ORM\Column(type="float")
      */
+    #[ORM\Column(type: 'float')]
     private $points = 0;
     /**
      * @var int
-     * @ORM\Column(type="integer")
      */
+    #[ORM\Column(type: 'integer')]
     private $currentPosition;
 
     public function getUser(): string

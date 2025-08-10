@@ -10,7 +10,7 @@ use App\Repository\SeasonList;
 use App\Security\UserProvider;
 use App\Service\ScoreCalculator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class UserController extends AbstractController
 {
@@ -43,10 +43,8 @@ class UserController extends AbstractController
         $this->seasonList = $seasonList;
     }
 
-    /**
-     * @Route("/user/{username}", name="user")
-     * @Route("/{season}/user/{username}", name="user_old")
-     */
+    #[Route("/user/{username}", name: "user")]
+    #[Route("/{season}/user/{username}", name: "user_old")]
     public function index(string $username, ?Season $season = null)
     {
         $season = $season ?? $this->seasonList->findCurrentSeason();

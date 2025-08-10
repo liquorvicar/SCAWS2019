@@ -21,7 +21,7 @@ class GoalType extends AbstractType
         $this->squadList = $squadList;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $squad = $this->squadList->getCurrentSquad();
         $scorers = array_merge(['Select player' => ''], array_combine($squad, $squad));

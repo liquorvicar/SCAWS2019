@@ -30,7 +30,7 @@ class BaseTestCase extends KernelTestCase
     {
         self::bootKernel();
 
-        $this->em = self::$container->get('doctrine.orm.default_entity_manager');
+        $this->em = self::getContainer()->get('doctrine.orm.default_entity_manager');
         $this->faker = Factory::create();
     }
 
@@ -49,7 +49,7 @@ class BaseTestCase extends KernelTestCase
     {
         $position = $position ?? Positions::DEFENDERS()->getValue();
         $timing = $timing ?? GoalTimes::SECOND_HALF()->getValue();
-        $fixtureList = self::$container->get(FixtureList::class);
+        $fixtureList = self::getContainer()->get(FixtureList::class);
         $prediction = (new Prediction())
             ->setUser($user)
             ->setPosition($position)

@@ -6,7 +6,7 @@ use App\Entity\Season;
 use App\Repository\SeasonList;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class SeasonsController extends AbstractController
 {
@@ -20,9 +20,7 @@ class SeasonsController extends AbstractController
         $this->seasonList = $seasonList;
     }
 
-    /**
-     * @Route("/seasons", name="list_seasons")
-     */
+    #[Route("/seasons", name: "list_seasons")]
     public function index(Request $request)
     {
         $seasons = $this->seasonList->findAll();

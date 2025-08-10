@@ -10,7 +10,6 @@ use App\Service\PositionResetter;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
 
 class MatchController extends AbstractController
 {
@@ -37,9 +36,7 @@ class MatchController extends AbstractController
         $this->fixtureList = $fixtureList;
     }
 
-    /**
-     * @Route("/match", name="add_match")
-     */
+    #[Route("/match", name: "add_match")]
     public function index(Request $request, PositionResetter $resetter)
     {
         $match = $this->fixtureList->findNextMatch();

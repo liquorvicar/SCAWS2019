@@ -5,32 +5,28 @@ namespace App\Entity;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\SeasonList")
- * @ORM\Table(name="season")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\SeasonList::class)]
+#[ORM\Table(name: 'season')]
 class Season
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $label;
     /**
      * @var DateTimeImmutable
-     * @ORM\Column(type="date_immutable")
      */
+    #[ORM\Column(type: 'date_immutable')]
     private $startDate;
     /**
      * @var DateTimeImmutable
-     * @ORM\Column(type="date_immutable")
      */
+    #[ORM\Column(type: 'date_immutable')]
     private $endDate;
 
     public function getId(): ?int

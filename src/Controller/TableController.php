@@ -8,7 +8,7 @@ use App\Repository\PointsTable;
 use App\Repository\SeasonList;
 use App\Security\UserProvider;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class TableController extends AbstractController
 {
@@ -41,10 +41,8 @@ class TableController extends AbstractController
         $this->seasonList = $seasonList;
     }
 
-    /**
-     * @Route("/table", name="table")
-     * @Route("/{season}/table", name="table_old")
-     */
+    #[Route("/table", name: "table")]
+    #[Route("/{season}/table", name: "table_old")]
     public function index(?Season $season = null)
     {
         $season = $season ?? $this->seasonList->findCurrentSeason();
@@ -62,9 +60,7 @@ class TableController extends AbstractController
         );
     }
 
-    /**
-     * @Route("/all-time", name="all_time_table")
-     */
+    #[Route("/all-time", name: "all_time_table")]
     public function allTimeTable()
     {
         $table = [];

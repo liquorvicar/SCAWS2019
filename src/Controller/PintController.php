@@ -10,7 +10,7 @@ use App\Security\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class PintController extends AbstractController
 {
@@ -34,9 +34,7 @@ class PintController extends AbstractController
         $this->pintRepository = $pintRepository;
     }
 
-    /**
-     * @Route("/pint", name="add_pint")
-     */
+    #[Route("/pint", name: "add_pint")]
     public function addPint(Request $request)
     {
         $currentMatch = $this->fixtureList->findNextMatch();
@@ -70,9 +68,7 @@ class PintController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/mypint", name="add_my_pint")
-     */
+    #[Route("/mypint", name: "add_my_pint")]
     public function addMyPint()
     {
         $currentMatch = $this->fixtureList->findNextMatch();

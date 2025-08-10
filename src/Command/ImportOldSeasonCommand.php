@@ -14,15 +14,15 @@ use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'scaws:import-season')]
 class ImportOldSeasonCommand extends Command
 {
-    protected static $defaultName = 'scaws:import-season';
-
     /**
      * @var EntityManagerInterface
      */
@@ -56,7 +56,7 @@ class ImportOldSeasonCommand extends Command
         $this->logger = $logger;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->addArgument('season', InputArgument::REQUIRED, 'Season to import from');
     }

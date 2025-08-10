@@ -9,7 +9,7 @@ use App\Repository\PredictionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class PredictionController extends AbstractController
 {
@@ -33,9 +33,7 @@ class PredictionController extends AbstractController
         $this->predictions = $predictions;
     }
 
-    /**
-     * @Route("/predict", name="add_prediction")
-     */
+    #[Route("/predict", name: "add_prediction")]
     public function index(Request $request)
     {
         $nextMatch = $this->fixtureList->findNextMatch();

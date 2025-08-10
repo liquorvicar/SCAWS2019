@@ -43,9 +43,7 @@ class GoalController extends AbstractController
         $this->predictionRepository = $predictionRepository;
     }
 
-    /**
-     * @Route("/goal", name="add_goal")
-     */
+    #[Route("/goal", name: "add_goal")]
     public function index(Request $request)
     {
         $currentMatch = $this->fixtureList->findNextMatch();

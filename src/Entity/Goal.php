@@ -8,43 +8,39 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 
-/**
- * @ORM\Entity(repositoryClass="App\Repository\GoalRepository")
- * @ORM\Table(name="goal")
- */
+#[ORM\Entity(repositoryClass: \App\Repository\GoalRepository::class)]
+#[ORM\Table(name: 'goal')]
 class Goal
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $scorer = '';
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $timing = '';
     /**
      * @var string
-     * @ORM\Column(type="string", length=255)
      */
+    #[ORM\Column(type: 'string', length: 255)]
     private $position = '';
     /**
      * @var MatchDay
-     * @ORM\ManyToOne(targetEntity="MatchDay", inversedBy="goals")
-     * @ORM\JoinColumn(name="match_id", referencedColumnName="id")
      */
+    #[ORM\ManyToOne(targetEntity: \MatchDay::class, inversedBy: 'goals')]
+    #[ORM\JoinColumn(name: 'match_id', referencedColumnName: 'id')]
     private $match;
     /**
      * @var Collection
-     * @ORM\OneToMany(targetEntity="Score", mappedBy="goal")
      */
+    #[ORM\OneToMany(targetEntity: \Score::class, mappedBy: 'goal')]
     private $scores;
 
     public function __construct()

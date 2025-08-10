@@ -77,3 +77,7 @@ sqldumps/
 ###< phpunit/phpunit ###
 
 backups/
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###

@@ -23,7 +23,7 @@ class PredictionRestrictionTest extends BaseTestCase
         $this->createPrediction('Andy', $position, $time, $previousMatch);
         $this->em->flush();
 
-        $restrictions = self::$container->get(PredictionRestriction::class);
+        $restrictions = self::getContainer()->get(PredictionRestriction::class);
         $positions = $restrictions->getPositions($user);
         $timings = $restrictions->getTimings($user);
         $this->assertNotContains($position, $positions);
@@ -42,7 +42,7 @@ class PredictionRestrictionTest extends BaseTestCase
         $this->createPrediction('Andy', $position, $time, $oldMatch);
         $this->em->flush();
 
-        $restrictions = self::$container->get(PredictionRestriction::class);
+        $restrictions = self::getContainer()->get(PredictionRestriction::class);
         $positions = $restrictions->getPositions($user);
         $timings = $restrictions->getTimings($user);
         $this->assertContains($position, $positions);

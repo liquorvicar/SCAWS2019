@@ -11,7 +11,7 @@ class PositionResetterTest extends BaseTestCase
         $season = $this->createSeason();
         $match = $this->createMatch($season, 'First', new \DateTimeImmutable());
         $this->em->flush();
-        $resetter = self::$container->get(PositionResetter::class);
+        $resetter = self::getContainer()->get(PositionResetter::class);
         $match = $resetter->reset($season, $match);
 
         $this->assertTrue($match->resetPositionChoices());
@@ -24,7 +24,7 @@ class PositionResetterTest extends BaseTestCase
         $previousReset->setReset();
         $thisMatch = $this->createMatch($season, 'Second', new \DateTimeImmutable());
         $this->em->flush();
-        $resetter = self::$container->get(PositionResetter::class);
+        $resetter = self::getContainer()->get(PositionResetter::class);
         $thisMatch = $resetter->reset($season, $thisMatch);
 
         $this->assertFalse($thisMatch->resetPositionChoices());
@@ -38,7 +38,7 @@ class PositionResetterTest extends BaseTestCase
         $this->createMatch($season, 'Second', (new \DateTimeImmutable())->sub(new \DateInterval('P1W')));
         $thisMatch = $this->createMatch($season, 'Third', new \DateTimeImmutable());
         $this->em->flush();
-        $resetter = self::$container->get(PositionResetter::class);
+        $resetter = self::getContainer()->get(PositionResetter::class);
         $thisMatch = $resetter->reset($season, $thisMatch);
 
         $this->assertFalse($thisMatch->resetPositionChoices());
@@ -53,7 +53,7 @@ class PositionResetterTest extends BaseTestCase
         $this->createMatch($season, 'Third', (new \DateTimeImmutable())->sub(new \DateInterval('P1W')));
         $thisMatch = $this->createMatch($season, 'Fourth', new \DateTimeImmutable());
         $this->em->flush();
-        $resetter = self::$container->get(PositionResetter::class);
+        $resetter = self::getContainer()->get(PositionResetter::class);
         $thisMatch = $resetter->reset($season, $thisMatch);
 
         $this->assertTrue($thisMatch->resetPositionChoices());
@@ -69,7 +69,7 @@ class PositionResetterTest extends BaseTestCase
         $this->createMatch($season, 'Fourth', (new \DateTimeImmutable())->sub(new \DateInterval('P1W')));
         $thisMatch = $this->createMatch($season, 'Fifth', new \DateTimeImmutable());
         $this->em->flush();
-        $resetter = self::$container->get(PositionResetter::class);
+        $resetter = self::getContainer()->get(PositionResetter::class);
         $thisMatch = $resetter->reset($season, $thisMatch);
 
         $this->assertTrue($thisMatch->resetPositionChoices());
