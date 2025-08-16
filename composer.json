@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^8.2.0",
+        "php": "^8.4.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
@@ -45,6 +45,7 @@
         "symfony/css-selector": "*",
         "symfony/debug-bundle": "*",
         "symfony/maker-bundle": "^v1.64.0",
+        "symfony/phpunit-bridge": "^7.3",
         "symfony/stopwatch": "*",
         "symfony/web-profiler-bundle": "*",
         "symplify/easy-coding-standard": "^12.0",
