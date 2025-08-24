@@ -7,6 +7,7 @@ use App\Entity\Prediction;
 use App\Entity\Season;
 use App\Security\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\Persistence\ManagerRegistry;
@@ -72,7 +73,7 @@ class PredictionRepository extends ServiceEntityRepository
                         LIMIT 1
                     )';
 
-        return $this->_em->getConnection()->fetchOne($sql,
+        return $this->getEntityManager()->getConnection()->fetchOne($sql,
             [
                 $human,
                 $currentMatch->getDate()->format('Y-m-d'),
@@ -106,7 +107,7 @@ class PredictionRepository extends ServiceEntityRepository
                     WHERE reset = 1 
                 )';
 
-        $lastMatches = $this->_em->getConnection()->fetchAllAssociative($sql);
+        $lastMatches = $this->getEntityManager()->getConnection()->fetchAllAssociative($sql);
         $matchesSinceReset = array_map(function ($lastMatch) {
             return $lastMatch['id'];
         }, $lastMatches);
@@ -117,14 +118,14 @@ class PredictionRepository extends ServiceEntityRepository
                 AND p.match_id IN (?)
                 ORDER BY p.match_id DESC';
 
-        $positionsPredicted = $this->_em->getConnection()->fetchAllAssociative($sql,
+        $positionsPredicted = $this->getEntityManager()->getConnection()->fetchAllAssociative($sql,
             [
                 $human,
                 $matchesSinceReset,
             ],
             [
                 ParameterType::STRING,
-                Connection::PARAM_INT_ARRAY,
+                ArrayParameterType::INTEGER,
             ]
         );
         $positionsExcluded = [];

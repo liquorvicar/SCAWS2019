@@ -23,14 +23,8 @@
             "config/routes/annotations.yaml"
         ]
     },
-    "doctrine/cache": {
-        "version": "v1.8.0"
-    },
     "doctrine/collections": {
         "version": "v1.6.2"
-    },
-    "doctrine/common": {
-        "version": "v2.10.0"
     },
     "doctrine/dbal": {
         "version": "v2.9.2"
@@ -365,12 +359,6 @@
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
-    },
-    "symfony/polyfill-php72": {
-        "version": "v1.11.0"
-    },
-    "symfony/polyfill-php80": {
-        "version": "v1.18.1"
     },
     "symfony/process": {
         "version": "v4.3.1"

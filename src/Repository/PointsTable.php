@@ -59,7 +59,7 @@ class PointsTable extends ServiceEntityRepository
                 WHERE m.season_id = ?
                 GROUP BY p.user
                 ORDER BY points DESC, bonus_points DESC, pints_drunk DESC, played ASC, p.user ASC';
-        $stats = $this->_em->getConnection()->fetchAllAssociative(
+        $stats = $this->getEntityManager()->getConnection()->fetchAllAssociative(
             $sql,
             [ScoreCalculator::BONUS_POINT, $season->getId()],
             [ParameterType::INTEGER, ParameterType::INTEGER]
@@ -106,7 +106,7 @@ class PointsTable extends ServiceEntityRepository
                 AND m.season_id = ?
                 GROUP BY p.user
                 ORDER BY points DESC, bonus_points DESC, pints_drunk DESC, played ASC, p.user ASC';
-            $previousTable = $this->_em->getConnection()->fetchAllAssociative(
+            $previousTable = $this->getEntityManager()->getConnection()->fetchAllAssociative(
                 $sql,
                 [ScoreCalculator::BONUS_POINT, $currentMatch->getId(), $season->getId()],
                 [ParameterType::INTEGER, ParameterType::INTEGER, ParameterType::INTEGER]
@@ -133,7 +133,7 @@ class PointsTable extends ServiceEntityRepository
     public function getLastMatchSaved(): int
     {
         $sql = 'SELECT MAX(match_id) AS last_match FROM table_entry';
-        $result = $this->_em->getConnection()->fetchOne($sql);
+        $result = $this->getEntityManager()->getConnection()->fetchOne($sql);
 
         return (int) $result['last_match'] ?? 0;
     }
@@ -143,7 +143,7 @@ class PointsTable extends ServiceEntityRepository
      */
     public function loadSavedTable(MatchDay $match): array
     {
-        $query = $this->_em->createQuery('
+        $query = $this->getEntityManager()->createQuery('
             SELECT te FROM App\Entity\TableEntry te 
             WHERE te.match = :match
             ');
